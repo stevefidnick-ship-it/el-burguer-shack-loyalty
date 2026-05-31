@@ -115,59 +115,69 @@ export default function StaffPage() {
   /* ── PIN gate ── */
   if (!unlocked) {
     return (
-      <main className="shack-night grid min-h-dvh place-items-center px-4 py-8">
+      <main className="shack-night flex min-h-dvh flex-col items-center justify-center px-4 py-8 gap-6">
+
+        {/* Brand above card */}
+        <div className="text-center">
+          <BrandMark tone="white" className="mx-auto w-[clamp(11rem,52vw,13rem)]" />
+          <p className="font-oswald mt-2 uppercase tracking-[0.22em] text-[#c8a032]/70"
+             style={{ fontSize: "clamp(0.65rem,3vw,0.75rem)" }}>
+            Panel de personal · Staff Portal
+          </p>
+        </div>
+
         <form
           onSubmit={handleUnlock}
           className="w-full max-w-[390px] overflow-hidden rounded-[24px]"
-          style={{ border: "4px solid #1e3a2f", boxShadow: "0 14px 0 #c1362a" }}
+          style={{ border: "3px solid rgba(200,160,50,0.25)", boxShadow: "0 12px 40px rgba(0,0,0,0.6)" }}
         >
           {/* Header */}
           <div
-            className="px-5 pt-5 pb-4"
-            style={{ background: "#1e3a2f" }}
+            className="flex items-center gap-3 px-5 py-4"
+            style={{ background: "#c1362a" }}
           >
-            <BrandMark compact tone="white" className="mx-auto w-[clamp(10rem,48vw,12rem)]" />
-            <div className="mt-4 flex items-center gap-3 rounded-[14px] bg-[#c1362a] px-4 py-3">
-              <LockKeyhole size={22} strokeWidth={2.5} className="text-[#ede0c2] shrink-0" />
-              <div>
-                <p className="font-oswald uppercase tracking-[0.18em] text-[#ede0c2]/60"
-                   style={{ fontSize: "clamp(0.65rem,3vw,0.75rem)" }}>
-                  Solo personal · Staff only
-                </p>
-                <p className="font-bebas text-[#ede0c2] leading-none"
-                   style={{ fontSize: "clamp(1.25rem,6.5vw,1.5rem)" }}>
-                  Modo cajero · Cashier Mode
-                </p>
-              </div>
+            <LockKeyhole size={22} strokeWidth={2.5} className="text-[#ede0c2] shrink-0" />
+            <div>
+              <p className="font-oswald uppercase tracking-[0.18em] text-[#ede0c2]/70"
+                 style={{ fontSize: "clamp(0.65rem,3vw,0.75rem)" }}>
+                Solo personal · Staff only
+              </p>
+              <p className="font-bebas text-[#ede0c2] leading-none"
+                 style={{ fontSize: "clamp(1.25rem,6.5vw,1.5rem)" }}>
+                Modo cajero · Cashier Mode
+              </p>
             </div>
           </div>
 
           {/* PIN input */}
-          <div className="bg-[#ede0c2] px-5 pb-5 pt-4">
+          <div className="bg-[#1e3a2f] px-5 pb-5 pt-4">
+            <p className="font-oswald mb-2 text-center uppercase tracking-[0.18em] text-[#c8a032]/70"
+               style={{ fontSize: "clamp(0.65rem,3vw,0.75rem)" }}>
+              Ingresa tu PIN · Enter PIN
+            </p>
             <input
               name="pin"
               inputMode="numeric"
               autoFocus
-              placeholder="PIN"
-              className="h-16 w-full rounded-[14px] bg-[#fdf6e8] px-5 text-center font-bebas tracking-[0.3em] outline-none"
+              placeholder="• • • •"
+              className="h-16 w-full rounded-[14px] bg-[#0f2018] px-5 text-center font-bebas tracking-[0.35em] text-[#c8a032] outline-none placeholder:text-[#c8a032]/30"
               style={{
                 fontSize: "clamp(1.75rem,9vw,2.25rem)",
-                border: "3px solid #1e3a2f",
-                boxShadow: "0 4px 0 #1e3a2f",
-                color: "#1e3a2f",
+                border: "2px solid rgba(200,160,50,0.25)",
+                boxShadow: "inset 0 2px 8px rgba(0,0,0,0.4)",
               }}
             />
             <button
               className="mt-3 h-14 w-full rounded-[14px] font-bebas tracking-[0.08em] text-[#ede0c2] transition-transform active:translate-y-1"
               style={{
                 fontSize: "clamp(1.1rem,5.5vw,1.35rem)",
-                background: "#1e3a2f",
-                boxShadow: "0 5px 0 #c1362a",
+                background: "#c1362a",
+                boxShadow: "0 5px 0 rgba(0,0,0,0.4)",
               }}
             >
               Entrar · Enter
             </button>
-            <p className="font-oswald mt-3 text-center uppercase tracking-[0.12em] text-[#c1362a]"
+            <p className="font-oswald mt-3 text-center uppercase tracking-[0.12em] text-[#c8a032]/60"
                style={{ fontSize: "clamp(0.72rem,3.5vw,0.875rem)" }}>
               {message}
             </p>
@@ -188,7 +198,14 @@ export default function StaffPage() {
           style={{ background: "#1e3a2f", border: "3px solid rgba(200,160,50,0.2)" }}
         >
           <div className="flex items-center justify-between gap-3">
-            <BrandMark compact tone="white" className="w-[clamp(8.5rem,40vw,10rem)] shrink-0" />
+            <div className="flex flex-col leading-none">
+              <span className="font-bebas tracking-[0.22em] text-[#c8a032]"
+                    style={{ fontSize: "clamp(0.6rem,2.8vw,0.7rem)" }}>el</span>
+              <span className="font-bebas tracking-[0.06em] text-[#ede0c2] leading-none"
+                    style={{ fontSize: "clamp(1.05rem,5.2vw,1.25rem)" }}>BURGUER SHACK</span>
+              <span className="font-oswald uppercase text-[#c8a032]/70 tracking-[0.18em]"
+                    style={{ fontSize: "clamp(0.55rem,2.5vw,0.65rem)" }}>Combo Rewards</span>
+            </div>
             <div className="text-right">
               <p className="font-oswald uppercase tracking-[0.14em] text-[#ede0c2]/50"
                  style={{ fontSize: "clamp(0.62rem,2.8vw,0.72rem)" }}>

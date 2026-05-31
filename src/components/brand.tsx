@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-import { useState } from "react";
 import clsx from "clsx";
 import { BurgerIcon } from "./burger-icon";
 
@@ -14,27 +12,9 @@ export function BrandMark({
   tone?: "green" | "white";
   className?: string;
 }) {
-  const [useFallback, setUseFallback] = useState(false);
+  // Always use the SVG — the PNGs have background issues (white box or invisible on dark).
   const ink = tone === "white" ? "#f8f4ea" : "#12331f";
   const accent = tone === "white" ? "#f8f4ea" : "#b7192c";
-
-  // Only use the PNG for the white variant (on dark backgrounds where it looks great).
-  // The green PNG has a white background box — always render the crisp SVG instead.
-  if (tone === "white" && !useFallback) {
-    return (
-      <div className={clsx(compact ? "brand-mark-compact" : "brand-mark-full", className)}>
-        <Image
-          src="/brand/el-burguer-shack-logo-white.png"
-          alt="El Burguer Shack"
-          width={640}
-          height={256}
-          className="h-auto w-full object-contain"
-          onError={() => setUseFallback(true)}
-          priority
-        />
-      </div>
-    );
-  }
 
   return (
     <div className={clsx(compact ? "brand-mark-compact" : "brand-mark-full", className)}>
