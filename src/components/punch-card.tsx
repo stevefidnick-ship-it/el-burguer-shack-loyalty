@@ -34,11 +34,31 @@ export function PunchCard({ customer }: PunchCardProps) {
     >
       {/* ── Header band ── */}
       <div
-        className="relative px-4 pt-4 pb-0"
+        className="relative px-4 pt-3 pb-0"
         style={{ background: "#1e3a2f" }}
       >
         <div className="flex items-center justify-between gap-3">
-          <BrandMark compact tone="white" className="w-[clamp(9rem,44vw,10.5rem)]" />
+          {/* Text-based brand mark — always crisp on dark green */}
+          <div className="flex flex-col leading-none">
+            <span
+              className="font-bebas tracking-[0.06em] text-[#c8a032]"
+              style={{ fontSize: "clamp(0.6rem,2.8vw,0.7rem)", letterSpacing: "0.22em" }}
+            >
+              el
+            </span>
+            <span
+              className="font-bebas tracking-[0.06em] text-[#ede0c2] leading-none"
+              style={{ fontSize: "clamp(1.05rem,5.2vw,1.25rem)" }}
+            >
+              BURGUER SHACK
+            </span>
+            <span
+              className="font-oswald uppercase text-[#c8a032]/70 tracking-[0.18em]"
+              style={{ fontSize: "clamp(0.55rem,2.5vw,0.65rem)" }}
+            >
+              Combo Rewards
+            </span>
+          </div>
           <div className="text-right">
             <p className="font-oswald text-[#ede0c2]/55 uppercase tracking-[0.14em]"
                style={{ fontSize: "clamp(0.65rem,3vw,0.75rem)" }}>

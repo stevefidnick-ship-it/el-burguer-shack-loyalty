@@ -103,14 +103,20 @@ export default function Home() {
       <div className="relative z-10 mx-auto flex w-full max-w-[430px] flex-col gap-5">
 
         {/* Header */}
-        <header className="flex items-center justify-between">
-          <BrandMark compact tone="green" className="w-[clamp(9rem,44vw,11rem)]" />
-          <p
-            className="font-bebas tracking-[0.08em] text-[#c1362a]"
-            style={{ fontSize: "clamp(1rem,5vw,1.25rem)" }}
-          >
-            Combo Rewards
-          </p>
+        <header className="flex items-center justify-between px-1">
+          <BrandMark compact tone="green" className="w-[clamp(9rem,44vw,10rem)]" />
+          <div className="text-right">
+            <p
+              className="font-bebas tracking-[0.08em] text-[#c1362a] leading-none"
+              style={{ fontSize: "clamp(1rem,5vw,1.2rem)" }}
+            >
+              Combo Rewards
+            </p>
+            <p className="font-oswald uppercase tracking-[0.15em] text-[#1e3a2f]/40"
+               style={{ fontSize: "clamp(0.6rem,2.8vw,0.7rem)" }}>
+              Tarjeta digital
+            </p>
+          </div>
         </header>
 
         {/* Punch card */}

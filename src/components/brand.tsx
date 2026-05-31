@@ -31,6 +31,7 @@ export function BrandMark({
           width={640}
           height={256}
           className="h-auto w-full object-contain"
+          style={tone === "green" ? { mixBlendMode: "multiply" } : undefined}
           onError={() => setUseFallback(true)}
           priority
         />
