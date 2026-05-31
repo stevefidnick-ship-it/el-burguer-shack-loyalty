@@ -17,21 +17,18 @@ export function BrandMark({
   const [useFallback, setUseFallback] = useState(false);
   const ink = tone === "white" ? "#f8f4ea" : "#12331f";
   const accent = tone === "white" ? "#f8f4ea" : "#b7192c";
-  const logoSrc =
-    tone === "white"
-      ? "/brand/el-burguer-shack-logo-white.png"
-      : "/brand/el-burguer-shack-logo-green-tight.png";
 
-  if (!useFallback) {
+  // Only use the PNG for the white variant (on dark backgrounds where it looks great).
+  // The green PNG has a white background box — always render the crisp SVG instead.
+  if (tone === "white" && !useFallback) {
     return (
       <div className={clsx(compact ? "brand-mark-compact" : "brand-mark-full", className)}>
         <Image
-          src={logoSrc}
+          src="/brand/el-burguer-shack-logo-white.png"
           alt="El Burguer Shack"
           width={640}
           height={256}
           className="h-auto w-full object-contain"
-          style={tone === "green" ? { mixBlendMode: "multiply" } : undefined}
           onError={() => setUseFallback(true)}
           priority
         />
