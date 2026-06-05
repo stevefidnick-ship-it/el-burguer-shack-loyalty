@@ -21,7 +21,7 @@ export function PunchCard({ customer }: PunchCardProps) {
 
         {/* ── Logo ── */}
         <div className="px-3 pt-4 pb-2 flex flex-col items-center gap-1">
-          <div className="w-full max-w-[286px]">
+          <div className="w-full max-w-[320px]">
             <img
               src="/logo-full.png"
               alt="El Burguer Shack"
