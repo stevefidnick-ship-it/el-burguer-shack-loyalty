@@ -162,24 +162,32 @@ export function getWaveSlots(customer: Pick<Customer, "waves">) {
  * Calculate remaining Waves needed for reward
  */
 export function getWavesRemaining(customer: Pick<Customer, "waves">) {
-  return Math.max(0, MAX_WAVES - customer.waves);
+  const waves = customer.waves ?? 0;
+  return Math.max(0, MAX_WAVES - waves);
 }
 
 /**
  * Get progress percentage (0-100)
  */
 export function getProgressPercent(customer: Pick<Customer, "waves">) {
-  return Math.round((customer.waves / MAX_WAVES) * 100);
+  const waves = customer.waves ?? 0;
+  return Math.round((waves / MAX_WAVES) * 100);
 }
 
 /**
- * Format member tenure (e.g., "Member since January 2026")
+ * Format member date — "LOCAL DESDE JUNIO 2026"
+ * Graceful fallback if date is invalid.
  */
 export function formatMemberSince(dateString: string): string {
-  const date = new Date(dateString);
-  const month = date.toLocaleString("es-MX", { month: "long" });
-  const year = date.getFullYear();
-  return `Miembro desde ${month} ${year}`;
+  try {
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return "LOCAL DESDE HOY";
+    const month = date.toLocaleString("es-MX", { month: "long" }).toUpperCase();
+    const year = date.getFullYear();
+    return `LOCAL DESDE ${month} ${year}`;
+  } catch {
+    return "LOCAL DESDE HOY";
+  }
 }
 
 /**
