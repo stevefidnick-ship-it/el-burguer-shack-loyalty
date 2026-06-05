@@ -20,12 +20,12 @@ export default function Home() {
   }
 
   return (
-    <main className="parchment min-h-dvh px-3 pt-2 pb-4 relative z-10">
-      <div className="mx-auto flex max-w-sm flex-col gap-2">
+    <main className="parchment min-h-dvh px-3 pt-1 pb-3 relative z-10">
+      <div className="mx-auto flex max-w-sm flex-col gap-1.5">
 
         {/* Header — kept minimal, card is the hero */}
         {customer && (
-          <div className="text-center px-1 pt-1 pb-0">
+          <div className="text-center px-1 pt-0.5 pb-0">
             <p className="boutique-heading text-[#1a3a2f] leading-none"
                style={{ fontSize: "clamp(1.7rem, 8vw, 2rem)" }}>
               Hazte Local
