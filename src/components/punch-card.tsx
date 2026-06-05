@@ -3,6 +3,7 @@
 import { QRCodeSVG } from "qrcode.react";
 import { getWavesRemaining, getProgressPercent, formatMemberSince, MAX_WAVES, type Customer } from "@/lib/loyalty";
 import { BajaSunset } from "./baja-sunset";
+import { PalapaIcon } from "./palapa-icon";
 
 type PunchCardProps = { customer: Customer };
 
@@ -20,7 +21,7 @@ export function PunchCard({ customer }: PunchCardProps) {
 
         {/* ── Logo ── */}
         <div className="px-3 pt-4 pb-2 flex flex-col items-center gap-1">
-          <div className="w-full max-w-[255px]">
+          <div className="w-full max-w-[286px]">
             <img
               src="/logo-full.png"
               alt="El Burguer Shack"
@@ -93,8 +94,8 @@ export function PunchCard({ customer }: PunchCardProps) {
                   key={i}
                   className="wave-stamp"
                   style={{
-                    width: "2.6rem",
-                    height: "2.6rem",
+                    width: "2.9rem",
+                    height: "2.9rem",
                     borderRadius: "50%",
                     overflow: "hidden",
                     border: earned ? "2.5px solid #1a3a2f" : "2px dashed rgba(26,58,47,0.3)",
@@ -118,9 +119,9 @@ export function PunchCard({ customer }: PunchCardProps) {
                     />
                   ) : (
                     <span style={{
-                      fontSize: "0.8rem",
+                      fontSize: "0.88rem",
                       fontWeight: 800,
-                      color: "rgba(26,58,47,0.35)",
+                      color: "rgba(26,58,47,0.45)",
                       fontFamily: "Oswald, sans-serif",
                       letterSpacing: "0.02em",
                     }}>
@@ -207,10 +208,13 @@ export function PunchCard({ customer }: PunchCardProps) {
 
         {/* ── Footer ── */}
         <div className="px-4 pb-5 text-center">
-          <p className="font-bebas text-[#1a3a2f]"
-             style={{ fontSize: "clamp(1.3rem, 6vw, 1.6rem)", letterSpacing: "0.08em", textShadow: "0 1px 0 rgba(26,58,47,0.2)" }}>
-            Ya eres de la casa 🌴
-          </p>
+          <span className="inline-flex items-center gap-2 justify-center">
+            <p className="font-bebas text-[#1a3a2f]"
+               style={{ fontSize: "clamp(1.3rem, 6vw, 1.6rem)", letterSpacing: "0.08em", textShadow: "0 1px 0 rgba(26,58,47,0.2)" }}>
+              Ya eres de la casa
+            </p>
+            <PalapaIcon size={28} />
+          </span>
           <p className="font-oswald uppercase text-[#1a3a2f]/40 tracking-widest mt-0.5"
              style={{ fontSize: "clamp(0.6rem, 2.5vw, 0.7rem)" }}>
             Hecho con pasión en Baja

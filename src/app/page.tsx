@@ -3,7 +3,7 @@
 import { FormEvent, useState } from "react";
 import { ArrowRight, UserRound } from "lucide-react";
 import { PunchCard } from "@/components/punch-card";
-
+import { PalmIcon } from "@/components/palm-icon";
 import { getDemoCustomer, upsertCustomer } from "@/lib/demo-store";
 import type { Customer } from "@/lib/loyalty";
 
@@ -48,7 +48,10 @@ export default function Home() {
                 opacity: 0.6,
               }}
             >
-              Ya eres de la casa 🏠
+              <span className="inline-flex items-center gap-1.5">
+                Ya eres de la casa
+                <PalmIcon size={20} />
+              </span>
             </p>
           </div>
         )}
@@ -82,7 +85,7 @@ export default function Home() {
                   fontWeight: 700,
                 }}
               >
-                Ya eres de la casa 🏠
+                Ya eres de la casa
               </p>
             </div>
 
