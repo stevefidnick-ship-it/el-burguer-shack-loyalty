@@ -150,7 +150,7 @@ export function PunchCard({ customer }: PunchCardProps) {
               <div className="flex items-center gap-3">
                 <BajaSunset size={52} />
                 <p className="font-abril text-[#d9472b] leading-tight"
-                   style={{ fontSize: "clamp(1.6rem, 7.5vw, 1.9rem)" }}>
+                   style={{ fontSize: "clamp(1.7rem, 8vw, 2rem)" }}>
                   ¡Hola {customer.firstName?.trim() || "Local"}!
                 </p>
               </div>
