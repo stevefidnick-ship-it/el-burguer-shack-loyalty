@@ -1,18 +1,23 @@
 @import "tailwindcss";
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;600;700&family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;600;700&family=Pacifico&family=Playfair+Display:wght@700;900&display=swap");
 
 /* ── Brand tokens ─────────────────────────────────────────── */
 :root {
-  --paper:    #ede0c2;   /* aged parchment */
-  --paper-dk: #d9c9a3;  /* darker parchment / shadow */
-  --ink:      #1e3a2f;   /* dark forest ink */
-  --red:      #c1362a;   /* ketchup / earthy red */
-  --gold:     #c8a032;   /* worn gold / stars */
-  --teal:     #0e6b60;   /* ocean teal accent */
-  --cream:    #fdf6e8;   /* near-white for QR bg */
+  --paper:    #d4b896;   /* warm aged paper / vintage cream */
+  --paper-dk: #c4a876;   /* darker aged paper */
+  --ink:      #1a3a2f;   /* dark forest green (Baja) */
+  --red:      #d9472b;   /* warm earthy red (sunset) */
+  --gold:     #d4a574;   /* warm gold / sand */
+  --teal:     #2d5a52;   /* deep ocean green */
+  --cream:    #f5ede0;   /* warm cream for QR bg */
+  --rust:     #8b4513;   /* rust brown for accents */
+  --sand:     #e8dcc4;   /* light sand color */
 
   --background: var(--paper);
   --foreground: var(--ink);
+  --accent-red: var(--red);
+  --accent-teal: var(--teal);
+  --accent-gold: var(--gold);
 }
 
 @theme inline {
@@ -36,6 +41,7 @@ button, input { font: inherit; }
 .font-bebas   { font-family: "Bebas Neue", Impact, "Arial Narrow", sans-serif; }
 .font-oswald  { font-family: "Oswald", "Arial Narrow", Arial, sans-serif; }
 .font-pacifico { font-family: "Pacifico", cursive; }
+.font-playfair { font-family: "Playfair Display", serif; }
 
 /* ── Brand-mark sizing ────────────────────────────────────── */
 .brand-mark-full    { width: clamp(16.5rem, 78vw, 19.5rem); }
@@ -49,6 +55,65 @@ button, input { font: inherit; }
 .fluid-kicker    { font-size: clamp(0.72rem, 3.5vw, 0.875rem); }
 .fluid-mini      { font-size: clamp(0.68rem, 3.1vw, 0.75rem); }
 .fluid-stamp-num { font-size: clamp(2.25rem, 11vw, 2.75rem); }
+
+/* ── Boutique Hotel / Surf Clubhouse Aesthetic ──────────────── */
+
+/* Warm, welcoming typography */
+.boutique-heading {
+  font-family: "Playfair Display", serif;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.boutique-subheading {
+  font-family: "Oswald", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.boutique-body {
+  font-family: "Oswald", sans-serif;
+  line-height: 1.6;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+}
+
+/* Warm, imperfect shadows for analog feel */
+.analog-shadow {
+  box-shadow: 
+    0 8px 16px rgba(0, 0, 0, 0.08),
+    0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.analog-shadow-lg {
+  box-shadow: 
+    0 16px 32px rgba(0, 0, 0, 0.12),
+    0 4px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Local café culture warmth */
+.cafe-warmth {
+  background: linear-gradient(135deg, rgba(212, 177, 150, 0.5) 0%, rgba(232, 220, 196, 0.3) 100%);
+  border-left: 4px solid var(--red);
+  padding-left: 1rem;
+}
+
+/* Collectible ephemera feel */
+.ephemera {
+  position: relative;
+  transform: rotate(-1deg);
+}
+
+.ephemera:nth-child(even) {
+  transform: rotate(1deg);
+}
+
+.ephemera:nth-child(3n) {
+  transform: rotate(-0.5deg);
+}
 
 /* ── Animations ───────────────────────────────────────────── */
 @keyframes floaty {
@@ -92,7 +157,7 @@ button, input { font: inherit; }
 .parchment {
   background-color: var(--paper);
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
   position: relative;
 }
 
@@ -102,18 +167,18 @@ button, input { font: inherit; }
   pointer-events: none;
   position: fixed;
   inset: 0;
-  background: radial-gradient(ellipse 95% 95% at 50% 50%, transparent 55%, rgba(30,20,8,0.28) 100%);
+  background: radial-gradient(ellipse 95% 95% at 50% 50%, transparent 50%, rgba(26,58,47,0.45) 100%);
   z-index: 0;
 }
 
 /* Checker paper — basket liner */
 .checker-paper {
-  background-color: #ede0c2;
+  background-color: var(--paper);
   background-image:
-    linear-gradient(45deg, rgba(193,54,42,0.14) 25%, transparent 25%),
-    linear-gradient(-45deg, rgba(193,54,42,0.14) 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, rgba(193,54,42,0.14) 75%),
-    linear-gradient(-45deg, transparent 75%, rgba(193,54,42,0.14) 75%);
+    linear-gradient(45deg, rgba(217,71,43,0.12) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(217,71,43,0.12) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(217,71,43,0.12) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(217,71,43,0.12) 75%);
   background-position: 0 0, 0 12px, 12px -12px, -12px 0;
   background-size: 24px 24px;
 }
@@ -189,4 +254,252 @@ button, input { font: inherit; }
   border-radius: 50%;
   background: var(--paper);
   flex-shrink: 0;
+}
+
+/* ── Emotional branding helpers ── */
+
+/* Highlight for retention messaging */
+.retention-highlight {
+  color: var(--red);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* Member badge */
+.member-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: rgba(200, 160, 50, 0.15);
+  border: 1px solid var(--gold);
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Locals energy */
+.locals-energy {
+  font-family: "Pacifico", cursive;
+  color: var(--gold);
+  opacity: 0.85;
+}
+
+/* ── Vintage decorative elements ── */
+
+/* Hand-drawn style border */
+.vintage-border {
+  border: 3px solid var(--ink);
+  border-radius: 12px;
+  position: relative;
+  box-shadow: 
+    0 8px 0 rgba(0,0,0,0.15),
+    inset 0 0 0 1px rgba(217,71,43,0.2);
+}
+
+/* Decorative frame */
+.vintage-frame {
+  position: relative;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, var(--paper) 0%, var(--sand) 100%);
+  border: 4px solid var(--ink);
+  border-radius: 16px;
+  box-shadow: 
+    0 12px 0 rgba(0,0,0,0.2),
+    inset 0 1px 0 rgba(255,255,255,0.3);
+}
+
+/* Vintage divider line */
+.vintage-divider {
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--red) 20%, var(--red) 80%, transparent);
+  margin: 1rem 0;
+  position: relative;
+}
+
+.vintage-divider::before,
+.vintage-divider::after {
+  content: "✦";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--red);
+  font-size: 1rem;
+}
+
+.vintage-divider::before { left: 0; }
+.vintage-divider::after { right: 0; }
+
+/* Distressed text effect */
+.distressed-text {
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-shadow: 
+    2px 2px 0 rgba(0,0,0,0.1),
+    -1px -1px 0 rgba(255,255,255,0.2);
+}
+
+/* Stamp effect */
+.stamp {
+  display: inline-block;
+  border: 2px solid var(--red);
+  padding: 0.5rem 1rem;
+  transform: rotate(-15deg);
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  color: var(--red);
+  font-size: 0.875rem;
+}
+
+/* Vintage badge */
+.vintage-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--red), var(--rust));
+  color: var(--cream);
+  font-weight: 900;
+  font-size: 1.25rem;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.2), inset 0 -2px 0 rgba(0,0,0,0.2);
+  border: 3px solid var(--ink);
+}
+
+/* Wave counter circles */
+.wave-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--sand), var(--paper));
+  border: 2px solid var(--ink);
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: 0 3px 0 rgba(0,0,0,0.1);
+}
+
+.wave-circle.active {
+  background: linear-gradient(135deg, var(--red), var(--rust));
+  color: var(--cream);
+  border-color: var(--ink);
+}
+
+/* Vintage card container */
+.vintage-card {
+  background: linear-gradient(to bottom, var(--paper) 0%, var(--sand) 100%);
+  border: 4px solid var(--ink);
+  border-radius: 16px;
+  box-shadow: 
+    0 12px 24px rgba(0,0,0,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.vintage-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23grain)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* ── Sello (Stamp) styling ── */
+
+/* Collectible stamp circle - earned */
+.sello-stamp {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.sello-stamp:hover {
+  transform: scale(1.15) !important;
+}
+
+/* Earned sello: hand-stamped aesthetic */
+.sello-stamp[style*="d9472b"] {
+  /* Earned: deep red with hand-stamped feel */
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-shadow: 
+    1px 1px 0 rgba(0,0,0,0.2),
+    -0.5px -0.5px 0 rgba(255,255,255,0.2);
+}
+
+/* Empty sello: dashed passport aesthetic */
+.sello-stamp[style*="dashed"] {
+  /* Empty: dashed border like a passport stamp slot */
+  opacity: 0.7;
+  transition: all 0.2s ease;
+}
+
+.sello-stamp[style*="dashed"]:hover {
+  opacity: 1;
+  border-color: var(--gold) !important;
+}
+
+/* Sello counter animation */
+@keyframes sello-pop {
+  0% {
+    transform: scale(0.5) rotate(-20deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotate(5deg);
+  }
+  100% {
+    transform: scale(1) rotate(-15deg);
+    opacity: 1;
+  }
+}
+
+.sello-stamp.new {
+  animation: sello-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Sello collection message */
+.sello-collection-msg {
+  font-family: "Pacifico", cursive;
+  color: var(--red);
+  font-size: clamp(0.85rem, 3.5vw, 1rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* Progress bar for Sello journey */
+.sello-progress {
+  height: 8px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--red) 25%, 
+    var(--red) 75%, 
+    transparent 100%);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.sello-progress::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }

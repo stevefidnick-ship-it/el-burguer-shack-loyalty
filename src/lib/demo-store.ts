@@ -11,12 +11,13 @@ import {
 const STORAGE_KEY = "el-burguer-shack-customers";
 
 const starterCustomers: Customer[] = [
-  { ...createCustomer({ firstName: "Sofia", phone: "5551234567" }), punches: 5 },
+  { ...createCustomer({ firstName: "Sofia", phone: "5551234567" }), waves: 5, points: 500 },
   {
     ...createCustomer({ firstName: "Diego", phone: "5557771212" }),
-    punches: 9,
+    waves: 10,
+    points: 1000,
     rewardReady: true,
-    statusLabel: "Free combo ready",
+    statusLabel: "Free combo ready! 🎉",
   },
 ];
 

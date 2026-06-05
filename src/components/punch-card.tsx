@@ -1,236 +1,201 @@
 "use client";
 
 import { QRCodeSVG } from "qrcode.react";
-import { Sparkles } from "lucide-react";
-import clsx from "clsx";
-import { getPunchSlots, MAX_PUNCHES, type Customer } from "@/lib/loyalty";
-import { BrandMark } from "./brand";
-import { BurgerIcon } from "./burger-icon";
+import { getWavesRemaining, getProgressPercent, formatMemberSince, MAX_WAVES, type Customer } from "@/lib/loyalty";
 
 type PunchCardProps = { customer: Customer };
 
-/** Five filled stars rendered as text */
-function Stars({ count = 5 }: { count?: number }) {
-  return (
-    <span className="tracking-[0.05em] text-[#c8a032]" aria-label={`${count} stars`}>
-      {"★".repeat(count)}
-    </span>
-  );
-}
-
 export function PunchCard({ customer }: PunchCardProps) {
-  const slots = getPunchSlots(customer);
-  const remaining = MAX_PUNCHES - customer.punches;
-  const pct = Math.round((customer.punches / MAX_PUNCHES) * 100);
+  const remaining = getWavesRemaining(customer);
+  const pct = getProgressPercent(customer);
 
   return (
-    <section
-      className="relative overflow-hidden rounded-[22px]"
-      style={{
-        border: "4px solid #1e3a2f",
-        background: "#ede0c2",
-        boxShadow: "0 14px 0 #1e3a2f",
-      }}
-    >
-      {/* ── Header band ── */}
+    <section className="relative">
       <div
-        className="relative px-4 pt-3 pb-0"
-        style={{ background: "#1e3a2f" }}
+        className="vintage-card mx-auto max-w-sm overflow-hidden"
+        style={{ background: "linear-gradient(to bottom, #d4b896 0%, #e8dcc4 100%)" }}
       >
-        <div className="flex items-center justify-between gap-3">
-          {/* Text-based brand mark — always crisp on dark green */}
-          <div className="flex flex-col leading-none">
-            <span
-              className="font-bebas tracking-[0.06em] text-[#c8a032]"
-              style={{ fontSize: "clamp(0.6rem,2.8vw,0.7rem)", letterSpacing: "0.22em" }}
-            >
-              el
-            </span>
-            <span
-              className="font-bebas tracking-[0.06em] text-[#ede0c2] leading-none"
-              style={{ fontSize: "clamp(1.05rem,5.2vw,1.25rem)" }}
-            >
-              BURGUER SHACK
-            </span>
-            <span
-              className="font-oswald uppercase text-[#c8a032]/70 tracking-[0.18em]"
-              style={{ fontSize: "clamp(0.55rem,2.5vw,0.65rem)" }}
-            >
-              Combo Rewards
-            </span>
+        {/* Logo */}
+        <div className="px-4 pt-5 pb-3 flex flex-col items-center gap-1">
+          <div className="w-full max-w-[220px]">
+            <img
+              src="/logo-full.png"
+              alt="El Burguer Shack"
+              className="h-auto w-full object-contain"
+              style={{ mixBlendMode: "multiply" }}
+            />
           </div>
-          <div className="text-right">
-            <p className="font-oswald text-[#ede0c2]/55 uppercase tracking-[0.14em]"
-               style={{ fontSize: "clamp(0.65rem,3vw,0.75rem)" }}>
-              Punches
+          {/* Olas counter */}
+          <div className="text-center mt-1">
+            <p className="font-oswald uppercase text-[#1a3a2f]/50 tracking-widest"
+               style={{ fontSize: "clamp(0.6rem, 2.8vw, 0.7rem)" }}>
+              Tus Olas
             </p>
-            <p
-              className="font-bebas text-[#ede0c2] leading-none"
-              style={{ fontSize: "clamp(2rem,10vw,2.5rem)" }}
-            >
-              {customer.punches}
-              <span className="text-[#ede0c2]/40"
-                    style={{ fontSize: "clamp(1rem,5vw,1.25rem)" }}>
-                /{MAX_PUNCHES}
+            <p className="font-bebas text-[#d9472b] leading-none"
+               style={{ fontSize: "clamp(2.2rem, 11vw, 2.8rem)" }}>
+              {customer.waves}
+              <span className="text-[#d9472b]/50"
+                    style={{ fontSize: "clamp(1.1rem, 5.5vw, 1.3rem)" }}>
+                /{MAX_WAVES}
               </span>
             </p>
           </div>
         </div>
 
-        {/* Tear-off notches + dashed line */}
-        <div className="tear-line mt-3 -mx-1">
-          <div className="tear-notch" />
-          <div className="tear-notch" />
-        </div>
-      </div>
-
-      {/* ── Hero copy ── */}
-      <div className="px-4 pt-4 pb-0">
-        <p className="font-oswald uppercase tracking-[0.18em] text-[#c1362a]"
-           style={{ fontSize: "clamp(0.7rem,3.2vw,0.8rem)" }}>
-          ★ Programa de Recompensas · Combo Rewards ★
-        </p>
-        <h1
-          className="font-bebas leading-[0.9] text-[#1e3a2f] mt-1"
-          style={{ fontSize: "clamp(2.25rem,11.5vw,2.75rem)" }}
-        >
-          Compra 9 combos
-        </h1>
-        {/* Brushstroke banner */}
-        <div
-          className="relative mt-1 inline-block px-3 py-1"
-          style={{
-            background: "#c1362a",
-            clipPath: "polygon(0 8%, 2% 0, 98% 2%, 100% 10%, 99% 92%, 97% 100%, 3% 98%, 0 90%)",
-          }}
-        >
-          <p
-            className="font-bebas tracking-[0.06em] text-[#ede0c2]"
-            style={{ fontSize: "clamp(1.5rem,8vw,1.875rem)" }}
-          >
-            ¡El 10° es GRATIS! · 10th FREE
+        {/* Member band */}
+        <div className="px-4 py-2 text-center"
+             style={{ background: "linear-gradient(to right, #1a3a2f, #2d5a52)" }}>
+          <p className="font-oswald uppercase text-[#d4a574]/80 tracking-widest"
+             style={{ fontSize: "clamp(0.6rem, 2.8vw, 0.7rem)" }}>
+            {formatMemberSince(customer.memberSince)}
           </p>
-        </div>
-      </div>
-
-      {/* ── Punch grid ── */}
-      <div
-        className={clsx(
-          "relative mx-4 mt-4 grid grid-cols-3 gap-[10px] rounded-[16px] p-3",
-          customer.rewardReady ? "checker-red" : "checker-paper",
-        )}
-        style={{ border: "3px solid #1e3a2f" }}
-      >
-        {slots.map((slot, i) => (
-          <div
-            key={slot.id}
-            className={clsx(
-              "grid aspect-square place-items-center rounded-[12px] transition-all duration-150",
-              slot.filled ? "stamp-filled" : "stamp-empty",
-            )}
-            aria-label={slot.filled ? "Punch earned" : "Empty slot"}
-          >
-            {slot.filled ? (
-              <BurgerIcon className="burger-stamp" preferReal />
-            ) : (
-              <span
-                className="font-bebas text-[#1e3a2f]/20"
-                style={{ fontSize: "clamp(1.1rem,5.5vw,1.3rem)" }}
-                aria-hidden
-              >
-                {i + 1}
-              </span>
-            )}
-          </div>
-        ))}
-      </div>
-
-      {/* ── Status ── */}
-      {customer.rewardReady ? (
-        <div
-          className="shimmer relative mx-4 mt-4 overflow-hidden rounded-[16px] px-4 py-3"
-          style={{
-            background: "#c1362a",
-            border: "3px solid #1e3a2f",
-            boxShadow: "0 5px 0 #1e3a2f",
-          }}
-        >
-          <div className="relative flex items-center gap-3">
-            <Sparkles className="size-8 shrink-0 text-[#ede0c2]" strokeWidth={2} />
-            <div>
-              <p className="font-oswald uppercase tracking-[0.18em] text-[#ede0c2]/70"
-                 style={{ fontSize: "clamp(0.65rem,3vw,0.75rem)" }}>
-                ¡Recompensa desbloqueada! · Reward unlocked
-              </p>
-              <p className="font-bebas text-[#ede0c2] leading-none"
-                 style={{ fontSize: "clamp(1.35rem,7vw,1.65rem)" }}>
-                Combo gratis — muéstrale al cajero
-              </p>
-            </div>
-          </div>
-        </div>
-      ) : (
-        <div
-          className="mx-4 mt-4 flex items-center justify-between rounded-[16px] bg-[#fdf6e8] px-4 py-3"
-          style={{ border: "2px solid rgba(30,58,47,0.15)" }}
-        >
-          <div>
-            <p className="font-oswald uppercase tracking-[0.12em] text-[#0e6b60]"
-               style={{ fontSize: "clamp(0.65rem,3vw,0.75rem)" }}>
-              Hola {customer.firstName} 👋
-            </p>
-            <p className="font-oswald font-bold text-[#1e3a2f] leading-tight mt-0.5"
-               style={{ fontSize: "clamp(1rem,4.8vw,1.2rem)" }}>
-              {remaining === 1
-                ? "¡Solo 1 combo más! · 1 more to go!"
-                : `${remaining} combos más · ${remaining} to go`}
-            </p>
-          </div>
-          <div>
-            <Stars count={Math.min(5, customer.punches)} />
-            <div
-              className="mt-1 h-2 rounded-full overflow-hidden"
-              style={{ width: "3.5rem", background: "rgba(30,58,47,0.12)" }}
-            >
-              <div
-                className="h-full rounded-full transition-all duration-500"
-                style={{ width: `${pct}%`, background: "#0e6b60" }}
-              />
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ── QR / cashier section ── */}
-      <div
-        className="mx-4 mt-4 mb-4 flex items-center gap-4 rounded-[16px] px-4 py-4"
-        style={{ background: "#1e3a2f" }}
-      >
-        <div
-          className="rounded-[12px] bg-white p-2 shrink-0"
-          style={{ boxShadow: "0 4px 0 rgba(0,0,0,0.35)" }}
-        >
-          <QRCodeSVG value={customer.qrToken} size={84} />
-        </div>
-        <div className="min-w-0">
-          <p className="font-oswald uppercase tracking-[0.14em] text-[#ede0c2]/55"
-             style={{ fontSize: "clamp(0.65rem,3vw,0.75rem)" }}>
-            ★ Muéstrale al cajero · Show cashier
-          </p>
-          <p className="font-bebas text-[#c8a032] leading-tight mt-1"
-             style={{ fontSize: "clamp(1rem,5vw,1.2rem)" }}>
-            Escanear para punch o canjear
-          </p>
-          <p className="font-pacifico mt-1 text-[#ede0c2]/40"
-             style={{ fontSize: "clamp(0.7rem,3.2vw,0.8rem)" }}>
-            Hecho con pasión en Baja
-          </p>
-          {customer.redemptions > 0 && (
-            <p className="font-oswald mt-2 uppercase tracking-[0.1em] text-[#0e6b60]"
-               style={{ fontSize: "clamp(0.65rem,3vw,0.75rem)" }}>
-              🎉 {customer.redemptions} combo{customer.redemptions > 1 ? "s" : ""} gratis canjeado{customer.redemptions > 1 ? "s" : ""}
+          {customer.totalVisits > 0 && (
+            <p className="font-oswald uppercase text-[#d4a574]/60 tracking-widest mt-0.5"
+               style={{ fontSize: "clamp(0.55rem, 2.5vw, 0.65rem)" }}>
+              {customer.totalVisits} visita{customer.totalVisits !== 1 ? "s" : ""} • {customer.redemptions} gratis
             </p>
           )}
+        </div>
+
+        {/* Wave image banner */}
+        <div className="w-full overflow-hidden" style={{ maxHeight: "160px" }}>
+          <img
+            src="/wave-surfer.png"
+            alt="Surf wave"
+            className="w-full object-cover"
+            style={{ height: "160px", objectPosition: "center center" }}
+          />
+        </div>
+
+        {/* Hero copy */}
+        <div className="px-4 pt-4 pb-2 text-center">
+          <p className="font-oswald uppercase text-[#d9472b]/70 tracking-widest"
+             style={{ fontSize: "clamp(0.7rem, 3.2vw, 0.8rem)" }}>
+            ★ Junta Olas ★
+          </p>
+          <h1 className="font-playfair text-[#1a3a2f] leading-tight mt-1"
+              style={{ fontSize: "clamp(2rem, 10vw, 2.5rem)" }}>
+            10 Olas =
+          </h1>
+          <div className="vintage-divider my-2" />
+          <p className="font-bebas text-[#d9472b] leading-tight"
+             style={{ fontSize: "clamp(1.4rem, 7vw, 1.8rem)" }}>
+            Burger Gratis
+          </p>
+        </div>
+
+        {/* Stamp circles */}
+        <div className="px-4 py-4">
+          <div className="flex justify-center gap-[0.4rem] flex-wrap">
+            {Array.from({ length: MAX_WAVES }).map((_, i) => (
+              <div
+                key={i}
+                className="transition-all duration-300"
+                style={{
+                  width: "2.6rem",
+                  height: "2.6rem",
+                  borderRadius: "50%",
+                  overflow: "hidden",
+                  border: i < customer.waves ? "2.5px solid #1a3a2f" : "2px dashed rgba(26,58,47,0.3)",
+                  boxShadow: i < customer.waves
+                    ? "0 3px 0 #1a3a2f, inset 0 1px 0 rgba(255,255,255,0.3)"
+                    : "none",
+                  transform: i < customer.waves ? "rotate(-6deg)" : "rotate(0deg)",
+                  filter: i < customer.waves ? "drop-shadow(1px 2px 3px rgba(0,0,0,0.2))" : "none",
+                  background: i < customer.waves ? "transparent" : "rgba(245,237,224,0.6)",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexShrink: 0,
+                }}
+              >
+                {i < customer.waves ? (
+                  <img
+                    src="/wave-surfer.png"
+                    alt="Ola ganada"
+                    style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }}
+                  />
+                ) : (
+                  <span style={{ fontSize: "0.65rem", fontWeight: 700, color: "rgba(26,58,47,0.3)", fontFamily: "Oswald, sans-serif" }}>
+                    {i + 1}
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Status */}
+        <div className="px-4 pb-3">
+          {customer.rewardReady ? (
+            <div className="rounded-xl p-4 text-center"
+                 style={{
+                   background: "linear-gradient(135deg, #d9472b, #8b4513)",
+                   boxShadow: "0 4px 0 rgba(0,0,0,0.15)",
+                 }}>
+              <p className="font-oswald uppercase text-[#f5ede0]/80 tracking-widest"
+                 style={{ fontSize: "clamp(0.65rem, 3vw, 0.75rem)" }}>
+                🎉 Uno de nosotros
+              </p>
+              <p className="font-bebas text-[#f5ede0] leading-tight mt-1"
+                 style={{ fontSize: "clamp(1.2rem, 6vw, 1.5rem)" }}>
+                Burger Gratis — Muéstrale al cajero
+              </p>
+            </div>
+          ) : (
+            <div className="rounded-xl p-4"
+                 style={{ background: "rgba(245,237,224,0.7)" }}>
+              <p className="font-pacifico text-[#d9472b]"
+                 style={{ fontSize: "clamp(0.85rem, 4vw, 1rem)" }}>
+                ¡Hola {customer.firstName}! 🌊
+              </p>
+              <p className="font-bebas text-[#1a3a2f] leading-tight mt-1"
+                 style={{ fontSize: "clamp(1rem, 5vw, 1.2rem)" }}>
+                {remaining === 1 ? "Ya casi — ¡una ola más!" : `Te faltan ${remaining} olas`}
+              </p>
+              <div className="mt-2 h-1.5 rounded-full overflow-hidden"
+                   style={{ background: "rgba(26,58,47,0.12)" }}>
+                <div className="h-full rounded-full transition-all duration-500"
+                     style={{ width: `${pct}%`, background: "#d9472b" }} />
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* QR section */}
+        <div className="mx-4 mb-4 flex items-center gap-3 rounded-xl p-3"
+             style={{ background: "linear-gradient(135deg, #1a3a2f, #2d5a52)" }}>
+          <div className="flex-shrink-0 rounded-lg p-2" style={{ background: "#f5ede0" }}>
+            <QRCodeSVG value={customer.qrToken} size={76} />
+          </div>
+          <div className="min-w-0">
+            <p className="font-oswald uppercase text-[#d4a574] tracking-widest"
+               style={{ fontSize: "clamp(0.6rem, 2.8vw, 0.7rem)" }}>
+              ★ Eres Local
+            </p>
+            <p className="font-bebas text-[#d4a574] leading-tight mt-0.5"
+               style={{ fontSize: "clamp(1rem, 5vw, 1.15rem)" }}>
+              Muestra al cajero
+            </p>
+            <p className="font-pacifico mt-1.5 text-[#d4a574]/60"
+               style={{ fontSize: "clamp(0.65rem, 3vw, 0.75rem)" }}>
+              Hecho con pasión en Baja
+            </p>
+            {customer.redemptions > 0 && (
+              <p className="font-oswald mt-1 uppercase tracking-widest text-[#d4a574]"
+                 style={{ fontSize: "clamp(0.6rem, 2.8vw, 0.7rem)" }}>
+                🎉 {customer.redemptions} burger{customer.redemptions > 1 ? "s" : ""} gratis
+              </p>
+            )}
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="px-4 pb-5 text-center">
+          <p className="font-pacifico text-[#d9472b]"
+             style={{ fontSize: "clamp(1rem, 4.5vw, 1.2rem)", fontWeight: 700 }}>
+            Ya eres de la casa 🏠
+          </p>
         </div>
       </div>
     </section>
