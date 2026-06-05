@@ -2,6 +2,7 @@
 
 import { QRCodeSVG } from "qrcode.react";
 import { getWavesRemaining, getProgressPercent, formatMemberSince, MAX_WAVES, type Customer } from "@/lib/loyalty";
+import { BajaSunset } from "./baja-sunset";
 
 type PunchCardProps = { customer: Customer };
 
@@ -80,7 +81,7 @@ export function PunchCard({ customer }: PunchCardProps) {
           <div className="vintage-divider my-2" />
           <p className="font-bebas text-[#d9472b] leading-tight"
              style={{ fontSize: "clamp(1.4rem, 7vw, 1.8rem)" }}>
-            Burger Gratis
+            Combo Gratis
           </p>
         </div>
 
@@ -139,23 +140,14 @@ export function PunchCard({ customer }: PunchCardProps) {
               </p>
               <p className="font-bebas text-[#f5ede0] leading-tight mt-1"
                  style={{ fontSize: "clamp(1.2rem, 6vw, 1.5rem)" }}>
-                Burger Gratis — Muéstrale al cajero
+                Combo Gratis — Muéstrale al cajero
               </p>
             </div>
           ) : (
             <div className="rounded-xl p-4"
                  style={{ background: "rgba(245,237,224,0.7)" }}>
               <div className="flex items-center gap-2">
-                {/* Mini wave stamp — same image as punch circles */}
-                <div style={{
-                  width: "2rem", height: "2rem", borderRadius: "50%",
-                  overflow: "hidden", flexShrink: 0,
-                  border: "2px solid #1a3a2f",
-                  boxShadow: "0 2px 0 #1a3a2f",
-                  transform: "rotate(-6deg)",
-                }}>
-                  <img src="/wave-surfer.png" alt="" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
-                </div>
+                <BajaSunset size={42} />
                 <p className="font-pacifico text-[#d9472b]"
                    style={{ fontSize: "clamp(0.85rem, 4vw, 1rem)" }}>
                   ¡Hola {customer.firstName}!
@@ -204,8 +196,8 @@ export function PunchCard({ customer }: PunchCardProps) {
 
         {/* Footer */}
         <div className="px-4 pb-5 text-center">
-          <p className="font-bebas tracking-wide text-[#1a3a2f]"
-             style={{ fontSize: "clamp(1.1rem, 5vw, 1.35rem)", letterSpacing: "0.06em" }}>
+          <p className="font-bebas text-[#1a3a2f]"
+             style={{ fontSize: "clamp(1.3rem, 6vw, 1.6rem)", letterSpacing: "0.08em", textShadow: "0 1px 0 rgba(26,58,47,0.2)" }}>
             Ya eres de la casa 🌴
           </p>
           <p className="font-oswald uppercase text-[#1a3a2f]/40 tracking-widest mt-0.5"

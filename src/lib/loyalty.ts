@@ -177,9 +177,9 @@ export function getProgressPercent(customer: Pick<Customer, "waves">) {
  */
 export function formatMemberSince(dateString: string): string {
   const date = new Date(dateString);
-  const month = date.toLocaleString("en-US", { month: "long" });
+  const month = date.toLocaleString("es-MX", { month: "long" });
   const year = date.getFullYear();
-  return `Member since ${month} ${year}`;
+  return `Miembro desde ${month} ${year}`;
 }
 
 /**
