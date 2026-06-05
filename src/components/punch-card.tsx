@@ -148,10 +148,10 @@ export function PunchCard({ customer }: PunchCardProps) {
             <div className="rounded-xl px-4 py-3"
                  style={{ background: "rgba(245,237,224,0.7)" }}>
               <div className="flex items-center gap-3">
-                <BajaSunset size={48} />
-                <p className="font-pacifico text-[#d9472b]"
-                   style={{ fontSize: "clamp(1.15rem, 5.5vw, 1.35rem)" }}>
-                  ¡Hola {customer.firstName}!
+                <BajaSunset size={52} />
+                <p className="font-pacifico text-[#d9472b] leading-tight"
+                   style={{ fontSize: "clamp(1.7rem, 8vw, 2rem)" }}>
+                  ¡Hola {customer.firstName?.trim() || "Local"}!
                 </p>
               </div>
               <p className="font-bebas text-[#1a3a2f] leading-tight mt-1.5"
