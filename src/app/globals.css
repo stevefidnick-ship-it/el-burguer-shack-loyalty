@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;600;700&family=Pacifico&family=Playfair+Display:wght@700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;600;700&family=Pacifico&family=Playfair+Display:wght@700;900&family=Abril+Fatface&display=swap");
 
 /* ── Brand tokens ─────────────────────────────────────────── */
 :root {
@@ -41,6 +41,7 @@ button, input { font: inherit; }
 .font-bebas   { font-family: "Bebas Neue", Impact, "Arial Narrow", sans-serif; }
 .font-oswald  { font-family: "Oswald", "Arial Narrow", Arial, sans-serif; }
 .font-pacifico { font-family: "Pacifico", cursive; }
+.font-abril   { font-family: "Abril Fatface", serif; }
 .font-playfair { font-family: "Playfair Display", serif; }
 
 /* ── Brand-mark sizing ────────────────────────────────────── */
