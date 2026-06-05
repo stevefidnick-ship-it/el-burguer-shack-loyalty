@@ -145,11 +145,23 @@ export function PunchCard({ customer }: PunchCardProps) {
           ) : (
             <div className="rounded-xl p-4"
                  style={{ background: "rgba(245,237,224,0.7)" }}>
-              <p className="font-pacifico text-[#d9472b]"
-                 style={{ fontSize: "clamp(0.85rem, 4vw, 1rem)" }}>
-                ¡Hola {customer.firstName}! 🌊
-              </p>
-              <p className="font-bebas text-[#1a3a2f] leading-tight mt-1"
+              <div className="flex items-center gap-2">
+                {/* Mini wave stamp — same image as punch circles */}
+                <div style={{
+                  width: "2rem", height: "2rem", borderRadius: "50%",
+                  overflow: "hidden", flexShrink: 0,
+                  border: "2px solid #1a3a2f",
+                  boxShadow: "0 2px 0 #1a3a2f",
+                  transform: "rotate(-6deg)",
+                }}>
+                  <img src="/wave-surfer.png" alt="" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
+                </div>
+                <p className="font-pacifico text-[#d9472b]"
+                   style={{ fontSize: "clamp(0.85rem, 4vw, 1rem)" }}>
+                  ¡Hola {customer.firstName}!
+                </p>
+              </div>
+              <p className="font-bebas text-[#1a3a2f] leading-tight mt-2"
                  style={{ fontSize: "clamp(1rem, 5vw, 1.2rem)" }}>
                 {remaining === 1 ? "Ya casi — ¡una ola más!" : `Te faltan ${remaining} olas`}
               </p>
@@ -192,9 +204,13 @@ export function PunchCard({ customer }: PunchCardProps) {
 
         {/* Footer */}
         <div className="px-4 pb-5 text-center">
-          <p className="font-pacifico text-[#d9472b]"
-             style={{ fontSize: "clamp(1rem, 4.5vw, 1.2rem)", fontWeight: 700 }}>
-            Ya eres de la casa 🏠
+          <p className="font-bebas tracking-wide text-[#1a3a2f]"
+             style={{ fontSize: "clamp(1.1rem, 5vw, 1.35rem)", letterSpacing: "0.06em" }}>
+            Ya eres de la casa 🌴
+          </p>
+          <p className="font-oswald uppercase text-[#1a3a2f]/40 tracking-widest mt-0.5"
+             style={{ fontSize: "clamp(0.6rem, 2.5vw, 0.7rem)" }}>
+            Hecho con pasión en Baja
           </p>
         </div>
       </div>
