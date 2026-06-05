@@ -57,13 +57,13 @@ export function PunchCard({ customer }: PunchCardProps) {
           )}
         </div>
 
-        {/* Wave image banner */}
-        <div className="w-full overflow-hidden" style={{ maxHeight: "160px" }}>
+        {/* Wave image banner — same image as stamps, consistent visual */}
+        <div className="w-full overflow-hidden" style={{ height: "150px" }}>
           <img
             src="/wave-surfer.png"
             alt="Surf wave"
-            className="w-full object-cover"
-            style={{ height: "160px", objectPosition: "center center" }}
+            className="w-full h-full object-cover"
+            style={{ objectPosition: "center center" }}
           />
         </div>
 

@@ -27,15 +27,7 @@ export default function Home() {
 
         {/* Splash intro — shown when customer is loaded */}
         {customer && (
-          <div className="text-center">
-            <div className="mb-2 flex justify-center">
-              <img
-                src="/logo-full.png"
-                alt="El Burguer Shack"
-                className="h-auto w-full max-w-[200px] object-contain"
-                style={{ mixBlendMode: "multiply" }}
-              />
-            </div>
+          <div className="text-center px-1 pt-2">
             <p
               className="boutique-heading text-[#1a3a2f] leading-tight"
               style={{ fontSize: "clamp(1.8rem, 8vw, 2.2rem)" }}
@@ -43,18 +35,17 @@ export default function Home() {
               Hazte Local
             </p>
             <p
-              className="boutique-subheading text-[#d9472b] mt-2"
+              className="boutique-subheading text-[#d9472b] mt-1"
               style={{ fontSize: "clamp(0.7rem, 3.2vw, 0.8rem)" }}
             >
               Junta Olas · Burgers Gratis
             </p>
             <p
-              className="font-pacifico mt-2"
+              className="font-pacifico mt-1"
               style={{
-                fontSize: "clamp(1.2rem, 5.5vw, 1.5rem)",
-                color: "#d9472b",
-                textShadow: "0 1px 0 rgba(0,0,0,0.15)",
-                fontWeight: 700,
+                fontSize: "clamp(1rem, 4.5vw, 1.2rem)",
+                color: "#1a3a2f",
+                opacity: 0.6,
               }}
             >
               Ya eres de la casa 🏠
