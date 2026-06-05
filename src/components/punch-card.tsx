@@ -3,12 +3,11 @@
 import { QRCodeSVG } from "qrcode.react";
 import { getWavesRemaining, getProgressPercent, formatMemberSince, MAX_WAVES, type Customer } from "@/lib/loyalty";
 import { BajaSunset } from "./baja-sunset";
-import { PalapaIcon } from "./palapa-icon";
 
 type PunchCardProps = { customer: Customer };
 
 export function PunchCard({ customer }: PunchCardProps) {
-  const waves    = customer.waves ?? 0;
+  const waves     = customer.waves ?? 0;
   const remaining = getWavesRemaining({ waves });
   const pct       = getProgressPercent({ waves });
 
@@ -20,8 +19,8 @@ export function PunchCard({ customer }: PunchCardProps) {
       >
 
         {/* ── Logo ── */}
-        <div className="px-3 pt-4 pb-2 flex flex-col items-center gap-1">
-          <div className="w-full max-w-[320px]">
+        <div className="px-3 pt-3 pb-2 flex flex-col items-center gap-1">
+          <div className="w-full max-w-[310px]">
             <img
               src="/logo-full.png"
               alt="El Burguer Shack"
@@ -29,10 +28,11 @@ export function PunchCard({ customer }: PunchCardProps) {
               style={{ mixBlendMode: "multiply" }}
             />
           </div>
-          {/* Olas counter */}
+
+          {/* Tus Olas counter */}
           <div className="text-center mt-0.5">
-            <p className="font-oswald uppercase text-[#1a3a2f]/50 tracking-widest"
-               style={{ fontSize: "clamp(0.6rem, 2.8vw, 0.7rem)" }}>
+            <p className="font-oswald uppercase text-[#1a3a2f]/60 tracking-widest"
+               style={{ fontSize: "clamp(0.72rem, 3.2vw, 0.8rem)" }}>
               Tus Olas
             </p>
             <p className="font-bebas text-[#d9472b] leading-none"
@@ -50,42 +50,39 @@ export function PunchCard({ customer }: PunchCardProps) {
         <div className="px-4 py-2 text-center"
              style={{ background: "linear-gradient(to right, #1a3a2f, #2d5a52)" }}>
           <p className="font-oswald uppercase text-[#d4a574]/90 tracking-widest"
-             style={{ fontSize: "clamp(0.62rem, 2.8vw, 0.72rem)" }}>
+             style={{ fontSize: "clamp(0.68rem, 3vw, 0.78rem)" }}>
             {formatMemberSince(customer.memberSince ?? "")}
           </p>
           {customer.totalVisits > 0 && (
             <p className="font-oswald uppercase text-[#d4a574]/60 tracking-widest mt-0.5"
-               style={{ fontSize: "clamp(0.55rem, 2.5vw, 0.65rem)" }}>
+               style={{ fontSize: "clamp(0.6rem, 2.5vw, 0.68rem)" }}>
               {customer.totalVisits} visita{customer.totalVisits !== 1 ? "s" : ""} • {customer.redemptions ?? 0} gratis
             </p>
           )}
         </div>
 
         {/* ── Wave banner ── */}
-        <div className="w-full overflow-hidden" style={{ height: "150px" }}>
-          <img
-            src="/wave-surfer.png"
-            alt="Surf wave"
-            className="w-full h-full object-cover"
-            style={{ objectPosition: "center center" }}
-          />
+        <div className="w-full overflow-hidden" style={{ height: "145px" }}>
+          <img src="/wave-surfer.png" alt="Surf wave"
+               className="w-full h-full object-cover"
+               style={{ objectPosition: "center center" }} />
         </div>
 
-        {/* ── Reward headline — one bold line ── */}
-        <div className="px-4 pt-4 pb-2 text-center">
+        {/* ── Reward headline ── */}
+        <div className="px-4 pt-3 pb-1 text-center">
           <p className="font-oswald uppercase text-[#d9472b]/70 tracking-widest"
-             style={{ fontSize: "clamp(0.7rem, 3.2vw, 0.8rem)" }}>
+             style={{ fontSize: "clamp(0.75rem, 3.5vw, 0.85rem)" }}>
             ★ Junta Olas ★
           </p>
           <h1 className="font-bebas text-[#1a3a2f] leading-none mt-1 whitespace-nowrap"
               style={{ fontSize: "clamp(1.7rem, 8.5vw, 2.2rem)", letterSpacing: "0.04em" }}>
             10 Olas = Combo Gratis
           </h1>
-          <div className="vintage-divider mt-3 mb-1" />
+          <div className="vintage-divider mt-2 mb-0" />
         </div>
 
         {/* ── Stamp circles ── */}
-        <div className="px-4 pb-4">
+        <div className="px-4 py-3">
           <div className="flex justify-center gap-[0.35rem] flex-wrap">
             {Array.from({ length: MAX_WAVES }).map((_, i) => {
               const earned = i < waves;
@@ -108,15 +105,11 @@ export function PunchCard({ customer }: PunchCardProps) {
                     justifyContent: "center",
                     flexShrink: 0,
                     cursor: "default",
-                    transition: "transform 0.15s cubic-bezier(0.34,1.56,0.64,1)",
                   }}
                 >
                   {earned ? (
-                    <img
-                      src="/wave-surfer.png"
-                      alt="Ola ganada"
-                      style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }}
-                    />
+                    <img src="/wave-surfer.png" alt="Ola ganada"
+                         style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
                   ) : (
                     <span style={{
                       fontSize: "0.88rem",
@@ -134,16 +127,13 @@ export function PunchCard({ customer }: PunchCardProps) {
           </div>
         </div>
 
-        {/* ── Status ── */}
+        {/* ── Progress / status ── */}
         <div className="px-4 pb-3">
           {customer.rewardReady ? (
             <div className="rounded-xl p-4 text-center"
-                 style={{
-                   background: "linear-gradient(135deg, #d9472b, #8b4513)",
-                   boxShadow: "0 4px 0 rgba(0,0,0,0.15)",
-                 }}>
+                 style={{ background: "linear-gradient(135deg, #d9472b, #8b4513)", boxShadow: "0 4px 0 rgba(0,0,0,0.15)" }}>
               <p className="font-oswald uppercase text-[#f5ede0]/80 tracking-widest"
-                 style={{ fontSize: "clamp(0.65rem, 3vw, 0.75rem)" }}>
+                 style={{ fontSize: "clamp(0.68rem, 3vw, 0.78rem)" }}>
                 🎉 Uno de nosotros
               </p>
               <p className="font-bebas text-[#f5ede0] leading-tight mt-1"
@@ -152,22 +142,18 @@ export function PunchCard({ customer }: PunchCardProps) {
               </p>
             </div>
           ) : (
-            <div className="rounded-xl p-4"
+            <div className="rounded-xl px-4 py-3"
                  style={{ background: "rgba(245,237,224,0.7)" }}>
               <div className="flex items-center gap-2.5">
-                <BajaSunset size={46} />
+                <BajaSunset size={44} />
                 <p className="font-pacifico text-[#d9472b]"
-                   style={{ fontSize: "clamp(0.85rem, 4vw, 1rem)" }}>
+                   style={{ fontSize: "clamp(0.9rem, 4.2vw, 1.05rem)" }}>
                   ¡Hola {customer.firstName}!
                 </p>
               </div>
-              <p className="font-bebas text-[#1a3a2f] leading-tight mt-2"
+              <p className="font-bebas text-[#1a3a2f] leading-tight mt-1.5"
                  style={{ fontSize: "clamp(1.05rem, 5.2vw, 1.25rem)" }}>
-                {customer.rewardReady
-                  ? "¡Combo gratis listo!"
-                  : remaining === 1
-                  ? "Ya casi — ¡una ola más!"
-                  : `Te faltan ${remaining} olas`}
+                {remaining === 1 ? "Ya casi — ¡una ola más!" : `Te faltan ${remaining} olas`}
               </p>
               <div className="mt-2 h-1.5 rounded-full overflow-hidden"
                    style={{ background: "rgba(26,58,47,0.12)" }}>
@@ -179,44 +165,37 @@ export function PunchCard({ customer }: PunchCardProps) {
         </div>
 
         {/* ── QR ── */}
-        <div className="mx-4 mb-4 flex items-center gap-3 rounded-xl p-3"
+        <div className="mx-4 mb-3 flex items-center gap-3 rounded-xl p-3"
              style={{ background: "linear-gradient(135deg, #1a3a2f, #2d5a52)" }}>
           <div className="flex-shrink-0 rounded-lg p-2" style={{ background: "#f5ede0" }}>
-            <QRCodeSVG value={customer.qrToken ?? "ebs-guest"} size={76} />
+            <QRCodeSVG value={customer.qrToken ?? "ebs-guest"} size={72} />
           </div>
           <div className="min-w-0">
             <p className="font-oswald uppercase text-[#d4a574] tracking-widest"
-               style={{ fontSize: "clamp(0.6rem, 2.8vw, 0.7rem)" }}>
+               style={{ fontSize: "clamp(0.65rem, 3vw, 0.75rem)" }}>
               ★ Eres Local
             </p>
             <p className="font-bebas text-[#d4a574] leading-tight mt-0.5"
-               style={{ fontSize: "clamp(1rem, 5vw, 1.15rem)" }}>
+               style={{ fontSize: "clamp(1.05rem, 5vw, 1.2rem)" }}>
               Muestra al cajero
-            </p>
-            <p className="font-pacifico mt-1.5 text-[#d4a574]/60"
-               style={{ fontSize: "clamp(0.65rem, 3vw, 0.75rem)" }}>
-              Hecho con pasión en Baja
             </p>
             {(customer.redemptions ?? 0) > 0 && (
               <p className="font-oswald mt-1 uppercase tracking-widest text-[#d4a574]"
-                 style={{ fontSize: "clamp(0.6rem, 2.8vw, 0.7rem)" }}>
+                 style={{ fontSize: "clamp(0.62rem, 2.8vw, 0.72rem)" }}>
                 🎉 {customer.redemptions} combo{customer.redemptions > 1 ? "s" : ""} gratis
               </p>
             )}
           </div>
         </div>
 
-        {/* ── Footer ── */}
-        <div className="px-4 pb-5 text-center">
-          <span className="inline-flex items-center gap-2 justify-center">
-            <p className="font-bebas text-[#1a3a2f]"
-               style={{ fontSize: "clamp(1.3rem, 6vw, 1.6rem)", letterSpacing: "0.08em", textShadow: "0 1px 0 rgba(26,58,47,0.2)" }}>
-              Ya eres de la casa
-            </p>
-            <PalapaIcon size={28} />
-          </span>
+        {/* ── Footer — single line, no icon, no duplicate ── */}
+        <div className="px-4 pb-4 pt-1 text-center">
+          <p className="font-bebas text-[#1a3a2f]"
+             style={{ fontSize: "clamp(1.3rem, 6vw, 1.55rem)", letterSpacing: "0.08em", textShadow: "0 1px 0 rgba(26,58,47,0.15)" }}>
+            Ya eres de la casa
+          </p>
           <p className="font-oswald uppercase text-[#1a3a2f]/40 tracking-widest mt-0.5"
-             style={{ fontSize: "clamp(0.6rem, 2.5vw, 0.7rem)" }}>
+             style={{ fontSize: "clamp(0.62rem, 2.8vw, 0.72rem)" }}>
             Hecho con pasión en Baja
           </p>
         </div>
