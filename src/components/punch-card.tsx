@@ -19,7 +19,7 @@ export function PunchCard({ customer }: PunchCardProps) {
       >
 
         {/* ── Logo ── */}
-        <div className="px-3 pt-3 pb-1 flex flex-col items-center">
+        <div className="px-3 pt-2 pb-1 flex flex-col items-center">
           <div className="w-full max-w-[310px]">
             <img
               src="/logo-full.png"
@@ -60,14 +60,14 @@ export function PunchCard({ customer }: PunchCardProps) {
         </div>
 
         {/* ── Wave banner ── */}
-        <div className="w-full overflow-hidden" style={{ height: "130px" }}>
+        <div className="w-full overflow-hidden" style={{ height: "120px" }}>
           <img src="/wave-surfer.png" alt="Surf wave"
                className="w-full h-full object-cover"
                style={{ objectPosition: "center center" }} />
         </div>
 
         {/* ── Reward headline ── */}
-        <div className="px-4 pt-2.5 pb-1 text-center">
+        <div className="px-4 pt-2 pb-1 text-center">
           <p className="font-oswald uppercase text-[#d9472b]/70 tracking-widest"
              style={{ fontSize: "clamp(0.72rem, 3.2vw, 0.82rem)" }}>
             ★ Junta Olas ★
@@ -80,7 +80,7 @@ export function PunchCard({ customer }: PunchCardProps) {
         </div>
 
         {/* ── Stamp circles — 5 × 5 layout ── */}
-        <div className="px-4 py-2.5">
+        <div className="px-4 py-2">
           <div className="flex flex-col gap-1.5 items-center">
             {[0, 5].map((rowStart) => (
               <div key={rowStart} className="flex gap-[0.35rem]">
@@ -131,7 +131,7 @@ export function PunchCard({ customer }: PunchCardProps) {
         </div>
 
         {/* ── Progress / status ── */}
-        <div className="px-4 pb-2">
+        <div className="px-4 pb-1.5">
           {customer.rewardReady ? (
             <div className="rounded-xl p-3.5 text-center"
                  style={{ background: "linear-gradient(135deg, #d9472b, #8b4513)", boxShadow: "0 4px 0 rgba(0,0,0,0.15)" }}>
@@ -147,15 +147,15 @@ export function PunchCard({ customer }: PunchCardProps) {
           ) : (
             <div className="rounded-xl px-4 py-3"
                  style={{ background: "rgba(245,237,224,0.7)" }}>
-              <div className="flex items-center gap-2.5">
-                <BajaSunset size={40} />
+              <div className="flex items-center gap-3">
+                <BajaSunset size={48} />
                 <p className="font-pacifico text-[#d9472b]"
-                   style={{ fontSize: "clamp(0.9rem, 4.2vw, 1.05rem)" }}>
+                   style={{ fontSize: "clamp(1.15rem, 5.5vw, 1.35rem)" }}>
                   ¡Hola {customer.firstName}!
                 </p>
               </div>
-              <p className="font-bebas text-[#1a3a2f] leading-tight mt-1"
-                 style={{ fontSize: "clamp(1.05rem, 5.2vw, 1.25rem)" }}>
+              <p className="font-bebas text-[#1a3a2f] leading-tight mt-1.5"
+                 style={{ fontSize: "clamp(1.2rem, 6vw, 1.45rem)" }}>
                 {remaining === 1 ? "Ya casi — ¡una ola más!" : `Te faltan ${remaining} olas`}
               </p>
               <div className="mt-1.5 h-1.5 rounded-full overflow-hidden"
@@ -167,8 +167,8 @@ export function PunchCard({ customer }: PunchCardProps) {
           )}
         </div>
 
-        {/* ── QR — last element, no footer below ── */}
-        <div className="mx-4 mb-4 flex items-center gap-3 rounded-xl p-3"
+        {/* ── QR — final element ── */}
+        <div className="mx-4 mb-3 flex items-center gap-3 rounded-xl p-3"
              style={{ background: "linear-gradient(135deg, #1a3a2f, #2d5a52)" }}>
           <div className="flex-shrink-0 rounded-lg p-2" style={{ background: "#f5ede0" }}>
             <QRCodeSVG value={customer.qrToken ?? "ebs-guest"} size={70} />
@@ -179,12 +179,8 @@ export function PunchCard({ customer }: PunchCardProps) {
               ★ Eres Local
             </p>
             <p className="font-bebas text-[#d4a574] leading-tight mt-0.5"
-               style={{ fontSize: "clamp(1.1rem, 5.5vw, 1.3rem)", fontWeight: 700 }}>
+               style={{ fontSize: "clamp(1.15rem, 5.5vw, 1.35rem)", fontWeight: 700 }}>
               Muestra al cajero
-            </p>
-            <p className="font-pacifico mt-1 text-[#d4a574]/60"
-               style={{ fontSize: "clamp(0.65rem, 3vw, 0.75rem)" }}>
-              Hecho con pasión en Baja
             </p>
             {(customer.redemptions ?? 0) > 0 && (
               <p className="font-oswald mt-0.5 uppercase tracking-widest text-[#d4a574]"
