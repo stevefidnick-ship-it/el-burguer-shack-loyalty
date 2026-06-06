@@ -19,8 +19,8 @@ export function PunchCard({ customer }: PunchCardProps) {
       >
 
         {/* ── Logo ── */}
-        <div className="px-3 pt-1 pb-0 flex flex-col items-center">
-          <div className="w-full max-w-[260px]">
+        <div className="px-3 pt-0 pb-0 flex flex-col items-center">
+          <div className="w-full max-w-[222px]">
             <img
               src="/logo-full.png"
               alt="El Burguer Shack"
@@ -149,7 +149,7 @@ export function PunchCard({ customer }: PunchCardProps) {
                  style={{ background: "rgba(245,237,224,0.7)" }}>
               <div className="flex items-center gap-3">
                 <BajaSunset size={52} />
-                <p className="font-abril text-[#d9472b] leading-tight"
+                <p className="font-righteous text-[#d9472b] leading-tight"
                    style={{ fontSize: "clamp(2.2rem, 10.5vw, 2.6rem)" }}>
                   ¡Hola {customer.firstName?.trim() || "Local"}!
                 </p>
